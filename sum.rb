@@ -13,10 +13,13 @@ def sum(str)
   str = str.split(',').map(&:to_i)
   total = 0
 
+  #To check negative number
   negatives = str.select { |num| num < 0 }
   unless negatives.empty?
     raise ArgumentError, "negative numbers not allowed: #{negatives}"
   end
+
+  #Sum process, and any number greater than 1000 will be ignored"
   str.each do |element|
     total = total + element if element <= 1000 
   end
