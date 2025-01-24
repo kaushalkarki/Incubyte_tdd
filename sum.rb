@@ -10,12 +10,15 @@ def sum(str)
 
   #Core logic
   str = str.gsub("\n",",")
-  str = str.split(',')
+  str = str.split(',').map(&:to_i)
   total = 0
+
+  negatives = str.select { |num| num < 0 }
+  unless negatives.empty?
+    raise ArgumentError, "negative numbers not allowed: #{negatives}"
+  end
   str.each do |element|
-    total = total + element.to_i  
+    total = total + element if element <= 1000 
   end
   total
 end
-
-puts sum("5")

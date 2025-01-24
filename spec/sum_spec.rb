@@ -28,4 +28,12 @@ RSpec.describe '#sum' do
   it "returns the sum if string has a delimitter" do
     expect(sum("//;5;2,2\n3,5")).to eq(17)  
   end
+
+  it "raises an error for negative numbers in string" do
+    expect{ sum("1,-2,3,-4") }.to raise_error(ArgumentError, "negative numbers not allowed: [-2, -4]")
+  end
+
+  it "ignore any number greater than 1000 in the string " do
+    expect(sum("2,3,10003,5")).to eq(10)  
+  end
 end
