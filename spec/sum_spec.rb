@@ -1,6 +1,14 @@
 require_relative "../sum"
 
 RSpec.describe '#sum' do
+  it "raises Name Error when the method is not defined" do
+    expect { sum1 }.to raise_error(NameError)
+  end
+
+  it "raises an error for no argument" do
+    expect{ sum() }.to raise_error(ArgumentError, "wrong number of arguments (given 0, expected 1)")
+  end
+
   it "returns 0 for an empty string" do
     expect(sum("")).to eq(0)
   end
